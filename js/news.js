@@ -1,10 +1,13 @@
 const loadNewsCategories = async () => {
-
     const url = `https://openapi.programming-hero.com/api/news/categories`
-    const response = await fetch(url);
-    const data = await response.json();
-    const categories = data
-    return categories
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const categories = data
+        return categories
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const setAllCategories = async () => {
@@ -24,9 +27,14 @@ const setAllCategories = async () => {
 const loadDisplayNews = async (id) => {
     loader(true)//akhane loader 
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`
-    const response = await fetch(url);
-    const data = await response.json();
-    displayNews(data.data), displayquantity(data.data)
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        displayNews(data.data), displayquantity(data.data)
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 const displayquantity = async quantity => {
     const newsQuantity = document.getElementById('news-quantity');
@@ -72,14 +80,19 @@ const displayNews = news => {
         `;
         newsDetailsBar.appendChild(newsDiv)
     });
-    loader(false)
+    loader(false) // loader end
 }
 
 const displayNewsModal = async (news_id) => {
     const url = ` https://openapi.programming-hero.com/api/news/${news_id}`
-    const response = await fetch(url);
-    const data = await response.json();
-    displayNewsModalDetail(data.data[0]);
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        displayNewsModalDetail(data.data[0]);
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 
 const displayNewsModalDetail = newsModal => {
