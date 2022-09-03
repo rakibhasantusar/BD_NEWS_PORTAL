@@ -1,0 +1,13 @@
+@media (max-width: 575.98px) {
+  #news-category {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #news-category {
+    display: flex;
+    flex-direction: column;
+  }
+}
