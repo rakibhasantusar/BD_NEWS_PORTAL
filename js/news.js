@@ -1,4 +1,5 @@
 const loadNewsCategories = async () => {
+
     const url = `https://openapi.programming-hero.com/api/news/categories`
     const response = await fetch(url);
     const data = await response.json();
@@ -10,21 +11,23 @@ const setAllCategories = async () => {
     const load = await loadNewsCategories();
     const data = load.data.news_category
     const categoryMenu = document.getElementById('news-category');
+
     data.forEach(news => {
         const newsItem = document.createElement('li');
         newsItem.innerHTML = `
         <a class="nav-link fs-5 text-dark fw-semibold" onclick="loadDisplayNews('${news.category_id}')" href="#">${news.category_name}</a>
         `
+
         categoryMenu.appendChild(newsItem)
     });
 }
 const loadDisplayNews = async (id) => {
+    loader(true)//akhane loader 
     const url = `https://openapi.programming-hero.com/api/news/category/${id}`
     const response = await fetch(url);
     const data = await response.json();
     displayNews(data.data), displayquantity(data.data)
 }
-
 const displayquantity = async quantity => {
     const newsQuantity = document.getElementById('news-quantity');
     newsQuantity.innerHTML = '';
@@ -69,6 +72,7 @@ const displayNews = news => {
         `;
         newsDetailsBar.appendChild(newsDiv)
     });
+    loader(false)
 }
 
 const displayNewsModal = async (news_id) => {
@@ -108,7 +112,14 @@ const displayNewsModalDetail = newsModal => {
     newsDetailsBarModal.appendChild(newsDivs)
 }
 
-
+const loader = loading => {
+    const loaderSpinner = document.getElementById('loader');
+    if (loading) {
+        loaderSpinner.classList.remove('d-none')
+    } else {
+        loaderSpinner.classList.add('d-none')
+    }
+}
 
 
 setAllCategories()
