@@ -13,7 +13,7 @@ const setAllCategories = async () => {
     data.forEach(news => {
         const newsItem = document.createElement('li');
         newsItem.innerHTML = `
-        <a class="nav-link" onclick="loadDisplayNews('${news.category_id}')" href="#">${news.category_name}</a>
+        <a class="nav-link fs-5 text-dark fw-semibold" onclick="loadDisplayNews('${news.category_id}')" href="#">${news.category_name}</a>
         `
         categoryMenu.appendChild(newsItem)
     });
