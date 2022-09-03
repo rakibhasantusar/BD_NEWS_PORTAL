@@ -53,6 +53,7 @@ const displayNews = news => {
     const newsDetailsBar = document.getElementById('news-detail');
     newsDetailsBar.innerHTML = '';
     news.forEach(newsDetail => {
+        console.log(newsDetail);
         const { title, thumbnail_url, details, author, total_view, _id } = newsDetail
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
